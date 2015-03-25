@@ -49,7 +49,7 @@ class StatusUpdate(Persistent):
     def _init_creator(self):
         portal_membership = getToolByName(getSite(), 'portal_membership')
         member = portal_membership.getAuthenticatedMember()
-        self.creator = member.getUserName()
+        self.creator = member.getProperty('fullname') or member.getUserName()
 
     # for unittest subclassing
     def _init_context(self, context):
